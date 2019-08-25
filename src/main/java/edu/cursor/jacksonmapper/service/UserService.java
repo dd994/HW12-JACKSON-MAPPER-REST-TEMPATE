@@ -6,5 +6,5 @@ import java.io.IOException;
 
 public interface UserService {
     User getUser(String email);
-    void serializToJson(User user) throws IOException;
+    void serializationToJson(User user) throws IOException;
 }

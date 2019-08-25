@@ -11,7 +11,7 @@ import java.io.IOException;
 @RequestMapping("users")
 public class UserController {
 
-    private UserServiceImpl userServiceImpl = new UserServiceImpl();
+    private final UserServiceImpl userServiceImpl = new UserServiceImpl();
 
     @GetMapping("/getUser/{email}")
     public User getUserByEmail(@PathVariable("email") String email) {
@@ -20,7 +20,7 @@ public class UserController {
 
     @PostMapping("addUser")
     public void addUserToFile(@RequestBody User user) throws IOException {
-        userServiceImpl.serializToJson(user);
+        userServiceImpl.serializationToJson(user);
     }
 
 }

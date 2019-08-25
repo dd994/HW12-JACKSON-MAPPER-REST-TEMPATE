@@ -13,7 +13,7 @@ import java.util.Random;
 @Service
 public class UserServiceImpl implements UserService {
 
-    private final String FILE_PATH = "/home/asus/Java/HW12-JACKSON-MAPPER-REST-TEMPLATE-OKHTTTP-CURSOR/user.json";
+    private final String FILE_PATH = "C:\\Users\\User\\Desktop\\user.json";
 
     @Override
     public User getUser(String email)  {
@@ -25,7 +25,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public void serializToJson(User user) throws IOException {
+    public void serializationToJson(User user) throws IOException {
         ObjectMapper objectMapper = new ObjectMapper();
         Random random = new Random();
         user.setAccessId(random.nextLong());
