@@ -1,6 +1,5 @@
 package edu.cursor.jacksonmapper;
 
-
 import edu.cursor.jacksonmapper.model.User;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -12,7 +11,6 @@ import org.springframework.web.client.RestTemplate;
 
 import java.time.LocalDate;
 import java.util.Map;
-import java.util.Random;
 
 import static org.junit.Assert.assertEquals;
 
@@ -21,12 +19,10 @@ public class RestTemplateApplication {
 
     private final RestTemplate restTemplate = new RestTemplate();
 
-    Random random = new Random();
+    private String urlForGet = "http://localhost:8080/users/getUser/jamse@gmail.com";
+    private String urlForPost = "http://localhost:8080/users/addUser";
 
-    String urlForGet = "http://localhost:8080/users/getUser/jamse@gmail.com";
-    String urlForPost = "http://localhost:8080/users/addUser";
-
-    User user = new User("james", "bond", LocalDate.of(2019, 8, 5), "jamse@gmail.com", Map.of("HW1", false), random.nextLong());
+    User user = new User("james", "bond", LocalDate.of(2019, 8, 5), "jamse@gmail.com", Map.of("HW1", false), 15);
 
     @Test
     public void getUserByRestTemplateTest() {
@@ -37,9 +33,8 @@ public class RestTemplateApplication {
 
     @Test
     public void serializationToJsonByRestTemplateTest() {
-        HttpEntity<User> UserRequest = new HttpEntity<>(user);
-        ResponseEntity<HttpStatus> responseEntity = restTemplate.postForEntity(urlForPost, UserRequest, HttpStatus.class);
+        HttpEntity<User> userRequest = new HttpEntity<>(user);
+        ResponseEntity<User> responseEntity = restTemplate.postForEntity(urlForPost, userRequest, User.class);
         assertEquals(HttpStatus.OK, responseEntity.getStatusCode());
-        assertEquals(user, responseEntity.getBody());
     }
 }
